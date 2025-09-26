@@ -1,9 +1,6 @@
 # Pomodoro Clock ⏱️  
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)  
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
-[![Issues](https://img.shields.io/github/issues/OrellanaJheremiasT/Pomodoro-Clock)](https://github.com/OrellanaJheremiasT/Pomodoro-Clock/issues)  
-[![Stars](https://img.shields.io/github/stars/OrellanaJheremiasT/Pomodoro-Clock?style=social)](https://github.com/OrellanaJheremiasT/Pomodoro-Clock/stargazers)  
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/) [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [![Issues](https://img.shields.io/github/issues/OrellanaJheremiasT/Pomodoro-Clock)](https://github.com/OrellanaJheremiasT/Pomodoro-Clock/issues) [![Stars](https://img.shields.io/github/stars/OrellanaJheremiasT/Pomodoro-Clock?style=social)](https://github.com/OrellanaJheremiasT/Pomodoro-Clock/stargazers)  
 
 An interactive **Python Pomodoro Timer** based on Francesco Cirillo's **Pomodoro Technique**.  
 Manage your work and break sessions directly from the terminal, with commands to **pause, resume, stop, and reset** the timer.  
