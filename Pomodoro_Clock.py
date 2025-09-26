@@ -36,7 +36,7 @@ class PomodoroClock:
             self.state = "Completed"
             self.print_table(f"{self.session_name} 00:00")
             self.running = False
-            # Sonido o notificación cuando termina
+            # Sound notification when finished
             print("\a")  # Beep sound
 
     def pause(self):
@@ -70,9 +70,9 @@ class PomodoroClock:
         os.system('cls' if os.name == 'nt' else 'clear')  # Cross-platform clear
         print("#" * 40)
         print(f"# {timer_display.center(36)} #")
-        print(f"# Estado: {self.state.ljust(28)} #")
+        print(f"# Status: {self.state.ljust(28)} #")
         print("#" + "-" * 38 + "#")
-        print(f"# [p] Pausar     [r] Reanudar          #")
+        print(f"# [p] Pause      [r] Resume            #")
         print(f"# [s] Stop       [x] Reset             #")
         print(f"# [q] Quit                             #")
         print("#" * 40)
@@ -83,9 +83,9 @@ def run_with_commands(timer: PomodoroClock):
 
     while True:
         try:
-            command = input("\nComando [p/r/s/x/q]: ").lower().strip()
+            command = input("\nCommand [p/r/s/x/q]: ").lower().strip()
         except KeyboardInterrupt:
-            print("\nInterrupción detectada. Saliendo...")
+            print("\nInterruption detected. Exiting...")
             timer.stop()
             break
 
@@ -103,14 +103,14 @@ def run_with_commands(timer: PomodoroClock):
             timer.stop()
             break
         elif command == "":
-            continue  # Ignorar entrada vacía
+            continue  # Ignore empty input
         else:
-            print("Comando no válido. Usa: p, r, s, x, q")
+            print("Invalid command. Use: p, r, s, x, q")
 
-        # Verificar si el temporizador terminó naturalmente
+        # Check if timer ended naturally
         if not timer.running and timer.state == "Completed":
-            print(f"\n¡{timer.session_name} completado!")
-            time.sleep(2)  # Pausa para mostrar el mensaje
+            print(f"\n{timer.session_name} completed!")
+            time.sleep(2)  # Pause to show message
             break
 
 
@@ -118,52 +118,52 @@ def pomodoro_cycle():
     pomodoros = 4
     completed_sessions = 0
     
-    print("=== INICIANDO CICLO POMODORO ===")
+    print("=== STARTING POMODORO CYCLE ===")
     
     for i in range(1, pomodoros + 1):
-        print(f"\n🎯 Pomodoro {i} de {pomodoros}")
-        timer = PomodoroClock(25, "Trabajo")
+        print(f"\nPomodoro {i} of {pomodoros}")
+        timer = PomodoroClock(25, "Work")
         run_with_commands(timer)
         completed_sessions += 1
 
-        # Verificar si el usuario quiere continuar
+        # Check if user wants to continue
         if not timer.running and timer.state != "Completed":
-            print("\nCiclo interrumpido por el usuario.")
+            print("\nCycle interrupted by user.")
             break
 
         if i < pomodoros:
-            print(f"\n☕ Break corto ({completed_sessions}/{pomodoros} completados)")
-            timer = PomodoroClock(5, "Descanso")
+            print(f"\nShort break ({completed_sessions}/{pomodoros} completed)")
+            timer = PomodoroClock(5, "Break")
             run_with_commands(timer)
         else:
-            print(f"\n🎉 ¡Todos los pomodoros completados! Break largo")
-            timer = PomodoroClock(15, "Descanso Largo")
+            print(f"\nAll pomodoros completed! Long break")
+            timer = PomodoroClock(15, "Long Break")
             run_with_commands(timer)
 
-    print("\n=== CICLO POMODORO FINALIZADO ===")
+    print("\n=== POMODORO CYCLE FINISHED ===")
 
 
 def single_session():
-    """Modo para una sola sesión personalizada"""
+    """Mode for a single custom session"""
     try:
-        minutes = int(input("Duración en minutos: "))
-        name = input("Nombre de la sesión: ") or "Sesión"
+        minutes = int(input("Duration in minutes: "))
+        name = input("Session name: ") or "Session"
         timer = PomodoroClock(minutes, name)
         run_with_commands(timer)
     except ValueError:
-        print("Por favor ingresa un número válido.")
+        print("Please enter a valid number.")
 
 
 if __name__ == "__main__":
     print("Pomodoro Timer")
-    print("1. Ciclo completo (4 pomodoros)")
-    print("2. Sesión única")
+    print("1. Full cycle (4 pomodoros)")
+    print("2. Single session")
     
     try:
-        choice = input("Selecciona opción (1/2): ").strip()
+        choice = input("Select option (1/2): ").strip()
         if choice == "2":
             single_session()
         else:
             pomodoro_cycle()
     except KeyboardInterrupt:
-        print("\nHasta luego! 👋")
+        print("\nGoodbye!")
